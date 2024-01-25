@@ -1,0 +1,38 @@
+data_conf:
+  train_index: data/trainsets/trainset3_for_verification/label_time_wav_80.txt
+  val_index: data/trainsets/trainset3_for_verification/label_time_wav_20.txt
+  test_index: data/backup/test3s_org/label_time_wav.txt
+  background_index: data/backgound/all_bg_list.txt
+  label_count: 2
+  sample_rate: 16000
+  clip_duration_ms: 1300
+  silence_percentage: 200
+  background_volume: 0.5
+  background_frequency: 0.2
+  background_silence_frequency: 0
+  background_silence_volume: 0.1
+  time_shift: 320
+
+feat_conf:
+  window_size_ms: 40.0
+  window_stride_ms: 20.0
+  dct_coefficient_count: 10
+  upper_frequency_limit: 8000
+  lower_frequency_limit: 20
+  filterbank_channel_count: 40
+
+model_conf:
+  name: lstm
+  training_steps: [ 20, 50, 30 ]
+  eval_step_interval: 100
+  learning_rate: [ 0.00005, 0.00003, 0.00001 ]
+  batch_size: 200
+
+  augment_pos_to_nev_freq: 0.2
+
+  augment_mask_freq_freq: 0.2
+  augment_mask_freq_param: 3
+  augment_mask_time_freq: 0.2
+  augment_mask_time_param: 10
+  
+  model_size_info: [ 98, 144 ]

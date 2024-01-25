@@ -1,0 +1,5 @@
+tensorflow_io
+matplotlib
+tqdm
+PyYAML
+tf-slim

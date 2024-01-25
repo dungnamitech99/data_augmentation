@@ -1,0 +1,52 @@
+data_conf:
+  train_index: data/trainsets/wuw_ds4a/train_new_add_ftel5+ftel5b.txt
+  val_index: data/trainsets/wuw_ds4a/val_new_add_ftel5.txt
+  test_index: data/trainsets/wuw_ds4a/val_new_add_ftel5.txt
+  background_index: data/backgound/all_bg_list_new.txt
+  label_count: 2
+  sample_rate: 16000
+  clip_duration_ms: 1300
+  silence_percentage: 200
+  background_volume: 0.5
+  background_frequency: 0.8
+  background_silence_frequency: 0.0
+  background_silence_volume: 0.1
+  time_shift: 320
+
+feat_conf:
+  window_size_ms: 40.0
+  window_stride_ms: 20.0
+  dct_coefficient_count: 10
+  upper_frequency_limit: 8000
+  lower_frequency_limit: 20
+  filterbank_channel_count: 40
+
+model_conf:
+  name: ds_cnn
+  training_steps: [ 15000, 25000, 20000, 10000 , 10000, 10000, 10000 ]
+  eval_step_interval: 100
+  learning_rate: [ 0.001, 0.0005, 0.0003, 0.0001,  0.00005, 0.00003, 0.00001 ]
+  batch_size: 500
+
+  augment_pos_to_nev_freq: 0.0
+
+  augment_mask_freq_freq: 0.2
+  augment_mask_freq_param: 3
+  augment_mask_time_freq: 0.2
+  augment_mask_time_param: 20
+  
+  model_size_info: [ 6, 300, 10, 4, 2, 1, 300, 5, 5, 2, 2, 300, 3, 3, 1, 1, 300, 3, 3, 1, 1, 300, 3, 3, 1, 1, 300, 3, 3, 1, 1]
+
+  return_softmax: True
+
+training_conf:
+  verbosity: False
+  optimizer_epsilon: 0.00000001
+  optimizer: adam
+  momentum: 0.9
+  novograd_beta_1: 0.95 
+  novograd_beta_2: 0.5
+  novograd_weight_decay: 0.001
+  novograd_grad_averaging: 0
+  lr_schedule: linear
+

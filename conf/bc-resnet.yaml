@@ -1,0 +1,61 @@
+data_conf:
+  train_index: data/trainsets/trainset2_ftel_clone1_devsil/label_time_wav_80.txt
+  val_index: data/trainsets/trainset2_ftel_clone1_devsil/label_time_wav_20.txt
+  test_index: data/backup/test3s_org/label_time_wav.txt
+  background_index: data/backgound/all_bg_list.txt
+  label_count: 2
+  sample_rate: 16000
+  clip_duration_ms: 1300
+  silence_percentage: 200
+  background_volume: 0.5
+  background_frequency: 0.5
+  background_silence_frequency: 0
+  background_silence_volume: 0.1
+  time_shift: 320
+
+feat_conf:
+  window_size_ms: 40.0
+  window_stride_ms: 20.0
+  dct_coefficient_count: 10
+  upper_frequency_limit: 8000
+  lower_frequency_limit: 20
+  filterbank_channel_count: 40
+
+model_conf:
+  name: bc_resnet
+  training_steps: [ 40, 100, 60 ]
+  eval_step_interval: 100
+  learning_rate: [ 0.00005, 0.00003, 0.00001 ]
+  batch_size: 500
+
+  augment_pos_to_nev_freq: 0.0
+
+  augment_mask_freq_freq: 0.2
+  augment_mask_freq_param: 3
+  augment_mask_time_freq: 0.2
+  augment_mask_time_param: 10
+
+  sub_groups: 1
+  last_filters: 32
+  first_filters: 16
+  paddings: "same"
+  dilations: '(1,1),(2,1),(4,1),(8,1)'
+  strides: '(1,1),(1,2),(1,2),(1,1)'
+  blocks_n: [2, 2, 4, 4]
+  filters: [16, 24, 32, 40]
+  dropouts: [0.1, 0.1, 0.1, 0.1]
+  pools: [1, 1, 1, 1]
+  max_pool: 0
+  return_softmax: False
+
+training_conf:
+  verbosity: False
+  optimizer_epsilon: 0.00000001
+  optimizer: adam
+  momentum: 0.9 
+  novograd_beta_1: 0.95 
+  novograd_beta_2: 0.5
+  novograd_weight_decay: 0.001
+  novograd_grad_averaging: 0
+  lr_schedule: linear
+
